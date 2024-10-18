@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzRAGE • George</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4a00c2;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        nav {
+            background-color: #1b1b1f;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        .container {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+            padding: 1rem;
+            width: 100%;
+            max-width: 600px;
+        }
+        .video-card video {
+            width: 100%;
+        }
+        .comment-section {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-section h3 {
+            font-size: 1.2rem;
+        }
+        .comment {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+        .comment h4 {
+            font-size: 1rem;
+            margin: 0;
+        }
+        .comment p {
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        EzRAGE • George
+    </header>
+    <nav>
+        <a href="https://gathabuer.github.io/ezrage/">Home</a>
+        <a href="#">Trending</a>
+        <a href="#">Subscriptions</a>
+        <a href="#">Library</a>
+    </nav>
+    <div class="container">
+        <div class="video-card">
+            <video id="myVideo" controls>
+                <source src="georgefloyd.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <div class="comment">
+                <h4>User1</h4>
+                <p>This is a great video!</p>
+            </div>
+            <div class="comment">
+                <h4>User2</h4>
+                <p>Really enjoyed this content.</p>
+            </div>
+            <div class="comment">
+                <h4>User3</h4>
+                <p>Insightful and well-made!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
