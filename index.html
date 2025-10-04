@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EzRage</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icons/logo.ico" type="image/x-icon">
+  <meta property="og:title" content="Moja Fajna Strona" />
+  <meta property="og:description" content="Tutaj znajdziesz ciekawe informacje i inspiracje!" />
+  <meta property="og:image" content="https://twojadomena.pl/obrazek.jpg" />
+  <meta property="og:url" content="https://twojadomena.pl/" />
+  <meta property="og:type" content="website" />
+  <style>
+    body.fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="index.html" class="logo-link"><img src="icons/logo.ico" alt="Logo" class="logo"></a>
+    <div class="sitename">EzRage</div>
+    <button id="search-toggle" class="search-btn"><img src="icons/lupa.png" alt="Szukaj"></button>
+  </header>
+
+  <div id="searchbar" class="searchbar hidden">
+    <input type="text" id="search-input" placeholder="Szukaj w tytułach...">
+  </div>
+
+  <main id="container">
+    <div class="row">
+      <article class="card"><img src="thumbnails/img1.png" alt="miniatura 1" class="thumb"><h3 class="title">Wina tuska</h3><p class="desc">Co ten tusk odpierdala</p><time class="date">qwentim | 04-10-2025</time><a data-href="subpage1.html" class="action-btn"><img src="icons/play.png" alt="Ikona"></a></article>
+      <article class="card"><img src="thumbnails/img2.png" alt="miniatura 2" class="thumb"><h3 class="title">мама вызови такси</h3><p class="desc">Gdzie taxi?</p><time class="date">qwentim | 04-10-2025</time><a data-href="subpage2.html" class="action-btn"><img src="icons/play.png" alt="Ikona"></a></article>
+    </div>
+  </main>
+  <div class="footer">© 2025 EzRage, qwentim. Wszelkie prawa zastrzeżone. Wszelkie materiały zamieszczone na tej stronie, w tym teksty, grafiki, zdjęcia, logo oraz inne treści, są chronione prawem autorskim i należą do EzRage, qwentim, chyba że zaznaczono inaczej. Zabrania się kopiowania, rozpowszechniania, modyfikowania lub wykorzystywania w jakiejkolwiek formie bez uprzedniej pisemnej zgody właściciela praw.</div>
+
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (!card.classList.contains('hidden-card')) {
+          document.querySelectorAll('.card').forEach(c => c.classList.remove('focused'));
+          card.classList.add('focused');
+        }
+      });
+    });
+
+    const searchToggle = document.getElementById('search-toggle');
+    const searchbar = document.getElementById('searchbar');
+    const searchInput = document.getElementById('search-input');
+
+    searchToggle.addEventListener('click', () => {
+      if (searchbar.classList.contains('hidden')) {
+        searchbar.classList.remove('hidden');
+        requestAnimationFrame(() => searchbar.classList.add('visible'));
+        searchInput.focus();
+      } else {
+        searchbar.classList.remove('visible');
+        searchbar.addEventListener('transitionend', () => searchbar.classList.add('hidden'), { once: true });
+      }
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector('.title').textContent.toLowerCase();
+        if (title.includes(query)) {
+          card.classList.remove('hidden-card');
+          card.style.pointerEvents = 'auto';
+        } else {
+          card.classList.add('hidden-card');
+          card.style.pointerEvents = 'none';
+        }
+      });
+    });
+
+    // Smooth transition to subpages
+    document.querySelectorAll('.action-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const targetUrl = btn.getAttribute('data-href');
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = targetUrl;
+        }, 200);
+      });
+    });
+  </script>
+</body>
+</html>
