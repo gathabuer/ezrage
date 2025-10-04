@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EzRage | Miły pan życzy spokojnego lotu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icons/logo.ico" type="image/x-icon">
+  <meta property="og:title" content="EzRage - Miły pan życzy spokojnego lotu" />
+  <meta property="og:description" content="Niesamowity człowiek" />
+  <meta property="og:image" content="https://gathabuer.github.io/ezrage/thumbnails/burgerking.png" />
+  <meta property="og:url" content="https://gathabuer.github.io/ezrage/burgerking.html" />
+  <meta property="og:type" content="website" />
+  <style>
+  body.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="https://gathabuer.github.io/ezrage" class="back-home"><img src="icons/logo.ico" alt="Logo" class="logo"></a>
+    <div class="sitename">EzRage - Miły pan życzy spokojnego lotu</div>
+  </header>
+
+  </main>
+  <main class="top-centered-video">
+    <div class="video-wrapper">
+    <video controls preload="metadata" playsinline>
+    <source src="videos/burgerking.mp4" type="video/mp4">
+    Twoja przeglądarka nie obsługuje elementu <code>video</code>.
+    </video>
+    </div>
+    <div class="video-info-container">
+      <h2 class="video-title">Miły pan życzy spokojnego lotu</h2>
+      <p></p>
+      <p class="video-desc">Niesamowity człowiek</p>
+      <p></p>
+      <p class="video-meta"><strong>Data publikacji:</strong> <span id="video-date">04-10-2025</span></p>
+      <p class="video-meta"><strong>Autor:</strong> <img src="profiles/qwentim.png" alt="Zdjęcie autora" class="author-photo"><span id="video-author">qwentim</span></p>
+    </div>
+    </main>
+    <div class="footer">© 2025 EzRage. Wszelkie prawa zastrzeżone. Wszelkie materiały zamieszczone na tej stronie, w tym teksty, grafiki, zdjęcia, logo oraz inne treści, są chronione prawem autorskim i należą do EzRage, qwentim, chyba że zaznaczono inaczej. Zabrania się kopiowania, rozpowszechniania, modyfikowania lub wykorzystywania w jakiejkolwiek formie bez uprzedniej pisemnej zgody właściciela praw.</div>
+
+  <script>
+    document.querySelectorAll('.back-home').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetUrl = link.getAttribute('href');
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 200);
+    });
+  });
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (!card.classList.contains('hidden-card')) {
+          document.querySelectorAll('.card').forEach(c => c.classList.remove('focused'));
+          card.classList.add('focused');
+        }
+      });
+    });
+
+    const searchToggle = document.getElementById('search-toggle');
+    const searchbar = document.getElementById('searchbar');
+    const searchInput = document.getElementById('search-input');
+
+    searchToggle.addEventListener('click', () => {
+      if (searchbar.classList.contains('hidden')) {
+        searchbar.classList.remove('hidden');
+        requestAnimationFrame(() => searchbar.classList.add('visible'));
+        searchInput.focus();
+      } else {
+        searchbar.classList.remove('visible');
+        searchbar.addEventListener('transitionend', () => searchbar.classList.add('hidden'), { once: true });
+      }
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const title = card.querySelector('.title').textContent.toLowerCase();
+        if (title.includes(query)) {
+          card.classList.remove('hidden-card');
+          card.style.pointerEvents = 'auto';
+        } else {
+          card.classList.add('hidden-card');
+          card.style.pointerEvents = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
