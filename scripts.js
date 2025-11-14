@@ -9,8 +9,8 @@ document.addEventListener('mousemove', e => {
 });
 
 function animate() {
-  dotX += (mouseX - dotX) * 0.1;
-  dotY += (mouseY - dotY) * 0.1;
+  dotX += (mouseX - dotX) * 0.9;
+  dotY += (mouseY - dotY) * 0.9;
   dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
   requestAnimationFrame(animate);
 }
